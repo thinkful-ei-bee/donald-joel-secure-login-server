@@ -8,7 +8,7 @@ function makeUsersArray() {
       full_name: 'Test user 1',
       nickname: 'TU1',
       password: 'password',
-      date_created: '2029-01-22T16:28:32.615Z',
+      //date_created: '2029-01-22T16:28:32.615Z',
     },
     {
       id: 2,
@@ -16,7 +16,7 @@ function makeUsersArray() {
       full_name: 'Test user 2',
       nickname: 'TU2',
       password: 'password',
-      date_created: '2029-01-22T16:28:32.615Z',
+      //date_created: '2029-01-22T16:28:32.615Z',
     },
     {
       id: 3,
@@ -24,15 +24,16 @@ function makeUsersArray() {
       full_name: 'Test user 3',
       nickname: 'TU3',
       password: 'password',
-      date_created: '2029-01-22T16:28:32.615Z',
+      //date_created: '2029-01-22T16:28:32.615Z',
     },
     {
+      //user_name, full_name, nickname, password
       id: 4,
       user_name: 'test-user-4',
       full_name: 'Test user 4',
       nickname: 'TU4',
       password: 'password',
-      date_created: '2029-01-22T16:28:32.615Z',
+      //date_created: '2029-01-22T16:28:32.615Z',
     },
   ]
 }
