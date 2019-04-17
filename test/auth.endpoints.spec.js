@@ -28,7 +28,7 @@ describe.only('Auth Endpoints', function() {
     beforeEach('insert users', () => 
       helpers.seedUsers(
         db, 
-        testUsers,
+        testUsers
       )
     )
 
@@ -39,8 +39,10 @@ describe.only('Auth Endpoints', function() {
         user_name: testUser.user_name,
         password: testUser.password,
       }
-
-      it(`responds with 400 required error when '${field}' is delete loginAttempt[field]`, () => {
+      
+      it(`responds with 400 required error when '${field}' is missing`, () => {
+        delete loginAttemptBody[field]
+        
         return supertest(app)
         .post('/api/auth/login')
         .send(loginAttemptBody)
@@ -48,7 +50,6 @@ describe.only('Auth Endpoints', function() {
           error: `Missing '${field}' in request body`,
         })
       })
-
       
     })
     
