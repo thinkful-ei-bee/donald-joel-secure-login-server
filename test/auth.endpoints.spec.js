@@ -22,7 +22,7 @@ describe.only('Auth Endpoints', function() {
 
   before('cleanup', () => helpers.cleanTables(db));
 
-  afterEach('cleanup', () => helpers.cleanTables);
+  //afterEach('cleanup', () => helpers.cleanTables);
 
   describe('POST /api/auth/login', () => {
     beforeEach('insert users', () => 
@@ -37,14 +37,16 @@ describe.only('Auth Endpoints', function() {
         password: testUser.password,
       }
 
-      it(`responds with 400 required error when '${field}' is delete loginAttempt[field]`)
-
-      return supertest(app)
+      it(`responds with 400 required error when '${field}' is delete loginAttempt[field]`, () => {
+        return supertest(app)
         .post('/api/auth/login')
         .send(loginAttemptBody)
         .expect(400, {
           error: `Missing '${field}' in request body`,
         })
+      })
+
+      
     })
     
   })
