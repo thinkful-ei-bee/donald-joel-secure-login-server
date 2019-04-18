@@ -38,38 +38,37 @@ describe('Things Endpoints', function() {
         db,
         testUsers,
         testThings,
-        testReviews,
+        testReviews
       )
     );
 
     const protectedEndpoints = [
       {
         name: 'GET /api/things/:thing_id',
-        path: '/api/things/1'
+        path: '/api/things/1',
+        method: supertest(app).post
       },
       {
         name: 'GET /api/things/:thing_id/reviews',
-        path: '/api/things/1/reviews'
+        path: '/api/things/1/reviews',
+        method: supertest(app).post
       },
     ];
   
     protectedEndpoints.forEach(endpoint => {
       describe(endpoint.name, () => {
         it('responds with 401 \'Missing basic token\' when no bearer token', () => {
-          return supertest(app)
-            .get(endpoint.path)
+          return endpoint.method(endpoint.path)
             .expect(401, { error: 'Missing bearer token' });
         });
         
         it(`responds 401 'Unauthorized request' when invalid JWT secret`, () => {
           const validUser = testUsers[0]
           const invalidSecret = 'bad-secret'
-          return supertest(app)
-            .get(endpoint.path)
+          return endpoint.method(endpoint.path)
             .set('Authorization', helpers.makeAuthHeader(validUser, invalidSecret))
             .expect(401, { error: 'Unauthorized request' });
         });
-
         
         it(`responds 401 'Unauthorized request' when invalid sub in payload`, () => {
           const invalidUser = { user_name: 'user-not-existy', id: 1 }
